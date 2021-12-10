@@ -10,3 +10,14 @@ def test_deploy():
     expect = 0
     # Assert
     assert starting_value == expect
+
+
+def test_update_storage():
+    # Arrange
+    account = accounts[0]
+    # Act
+    simple_storage = SimpleStorage.deploy({"from": account})
+    expect = 10
+    simple_storage.store(expect, {"from": account})
+    # Assert
+    assert simple_storage.retrieve() == expect
